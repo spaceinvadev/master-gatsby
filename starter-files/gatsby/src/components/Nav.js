@@ -12,6 +12,7 @@ const NavStyles = styled.nav`
 
   ul {
     margin: 0;
+    margin-block-start: -6rem;
     padding: 0;
     text-align: center;
     list-style: none;
@@ -42,9 +43,14 @@ const NavStyles = styled.nav`
   a {
     font-size: 3rem;
     text-decoration: none;
+    display: inline-block;
+    width: 100%;
     &:hover {
       color: var(--red);
     }
+    /* &[aria-current='page'] {
+      color: var(--red);
+    } */
   }
 `;
 
