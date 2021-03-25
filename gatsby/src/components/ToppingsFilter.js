@@ -28,6 +28,7 @@ const ToppingsStyles = styled.div`
 `;
 
 function countPizzasInToppings(pizzas) {
+  // Return the pizzas with counts
   const counts = pizzas
     .map((pizza) => pizza.toppings)
     .flat()
@@ -61,15 +62,8 @@ function countPizzasInToppings(pizzas) {
 export default function ToppingsFilter() {
   // Get a list of all the toppings
   // Get a list of all the pizzas with their toppings
-  const { toppings, pizzas } = useStaticQuery(graphql`
+  const { pizzas } = useStaticQuery(graphql`
     query {
-      toppings: allSanityTopping {
-        nodes {
-          name
-          id
-          vegetarian
-        }
-      }
       pizzas: allSanityPizza {
         nodes {
           toppings {
@@ -80,8 +74,6 @@ export default function ToppingsFilter() {
       }
     }
   `);
-
-  console.clear();
 
   // Count how many pizzas are in each topping
   const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
@@ -98,7 +90,6 @@ export default function ToppingsFilter() {
           <span className="count">{toppingWithCount.count}</span>
         </Link>
       ))}
-      {/* Link it up... */}
     </ToppingsStyles>
   );
 }
