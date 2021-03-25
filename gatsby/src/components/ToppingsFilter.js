@@ -21,7 +21,7 @@ const ToppingsStyles = styled.div`
       padding: 2px 5px;
     }
 
-    .active {
+    &[aria-current='page'] {
       background: var(--yellow);
     }
   }
@@ -80,7 +80,12 @@ export default function ToppingsFilter() {
 
   return (
     <ToppingsStyles>
+      <Link to="/pizzas">
+        <span className="name">All</span>
+        <span className="count">{pizzas.nodes.length}</span>
+      </Link>
       {/* Loop over the list of toppings and display the topping and the count of pizzas in that topping */}
+      {/* FIXME: Fix toppings overlap, maybe from data in Sanity */}
       {toppingsWithCounts.map((toppingWithCount) => (
         <Link
           to={`/toppings/${toppingWithCount.name}`}

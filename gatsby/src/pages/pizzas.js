@@ -4,7 +4,7 @@ import PizzasList from '../components/PizzasList';
 import ToppingsFilter from '../components/ToppingsFilter';
 
 export default function PizzasPage({ data }) {
-  const pizzas = data.allSanityPizza.nodes;
+  const pizzas = data.pizzas.nodes;
 
   return (
     <>
@@ -15,8 +15,10 @@ export default function PizzasPage({ data }) {
 }
 
 export const query = graphql`
-  query QueryAllPizzas {
-    allSanityPizza {
+  query QueryPizzas($toppingRegex: String) {
+    pizzas: allSanityPizza(
+      filter: { toppings: { elemMatch: { name: { regex: $toppingRegex } } } } # { name: { in: $topping } }
+    ) {
       nodes {
         name
         id
