@@ -3,6 +3,8 @@ import { graphql, Link } from 'gatsby';
 import GatsbyImage from 'gatsby-image';
 import styled from 'styled-components';
 
+import Pagination from '../components/Pagination';
+
 const SlicemastersGrid = styled.div`
   display: grid;
   gap: 2rem;
@@ -39,11 +41,17 @@ const SlicemasterStyles = styled.div`
   }
 `;
 
-export default function SliceMastersPage({ data }) {
+export default function SliceMastersPage({ data, pageContext }) {
   const slicemasters = data.allSanityName.nodes;
 
   return (
     <>
+      <Pagination
+        totalCount={data.allSanityName.totalCount}
+        currentPage={pageContext.currentPage || 1}
+        skip={pageContext.skip}
+        base="/slicemasters"
+      />
       <SlicemastersGrid>
         {slicemasters.map((slicemaster) => (
           <SlicemasterStyles>
@@ -62,7 +70,7 @@ export default function SliceMastersPage({ data }) {
 }
 
 export const query = graphql`
-  query($skip: Int = 0, $pageSize: Int = 4) {
+  query($skip: Int = 0, $pageSize: Int = 2) {
     allSanityName(limit: $pageSize, skip: $skip) {
       totalCount
       nodes {
