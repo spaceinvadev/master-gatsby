@@ -3,11 +3,13 @@ require('dotenv').config({
 }),
   (module.exports = {
     siteMetadata: {
-      siteUrl: `https://gatsby.pizza`,
       title: `Slick's Slices`,
+      siteUrl: `https://gatsby.pizza`,
       description: `The best pizza place in the world!`,
+      twitter: '@slicksSlices',
     },
     plugins: [
+      'gatsby-plugin-react-helmet',
       'gatsby-plugin-styled-components',
       {
         resolve: 'gatsby-source-sanity',
