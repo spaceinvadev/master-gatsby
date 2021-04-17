@@ -7,6 +7,7 @@ const MenuItemStyles = styled.li`
   gap: 0 1.3rem;
   align-content: center;
   align-items: center;
+  position: relative;
 
   &:not(:last-of-type) {
     margin-bottom: 16px;
