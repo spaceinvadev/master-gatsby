@@ -17,6 +17,17 @@ const OrderStyles = styled.form`
     &.menu {
       grid-column: span 1;
     }
+
+    & h3.order-total {
+      width: fit-content;
+      text-align: center;
+      margin: 20px auto 16px auto;
+    }
+
+    & .order-cta {
+      width: 256px;
+      margin: 0 auto;
+    }
   }
 
   /* @media(max-width: 900px) {
