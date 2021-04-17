@@ -5,6 +5,8 @@ import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatCurrency from '../../formatCurrency';
+import OrderStyles from '../styles/OrderStyles';
+import MenuItemStyles from '../styles/MenuItemStyles';
 
 export default function OrderPage({ data }) {
   const { values, updateValue } = useForm({
@@ -16,7 +18,7 @@ export default function OrderPage({ data }) {
   return (
     <>
       <SEO title="Order a Pizza" />
-      <form>
+      <OrderStyles>
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">
@@ -38,11 +40,11 @@ export default function OrderPage({ data }) {
             />
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset className="menu">
           <legend>Menu</legend>
           <ul>
             {pizzas.map((pizza) => (
-              <li key={pizza.id}>
+              <MenuItemStyles key={pizza.id}>
                 <GatsbyImage
                   fluid={pizza.image.asset.fluid}
                   width="48"
@@ -61,14 +63,14 @@ export default function OrderPage({ data }) {
                     </button>
                   ))}
                 </div>
-              </li>
+              </MenuItemStyles>
             ))}
           </ul>
         </fieldset>
-        <fieldset>
+        <fieldset className="order">
           <legend>Order</legend>
         </fieldset>
-      </form>
+      </OrderStyles>
     </>
   );
 }
