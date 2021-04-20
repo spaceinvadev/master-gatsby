@@ -35,7 +35,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+function wait(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 exports.handler = async (event, context) => {
+  await wait(5000);
   const body = JSON.parse(event.body);
 
   // Validate incoming data is correct
@@ -50,6 +57,16 @@ exports.handler = async (event, context) => {
         }),
       };
     }
+  }
+
+  // Check there are items in the cart
+  if (!body.order.length) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: 'You have to add at least one item to the cart.',
+      }),
+    };
   }
 
   // // Send email
